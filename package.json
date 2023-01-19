@@ -1,0 +1,13 @@
+{
+  "name": "redux-killer",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "back": "pnpm --filter back",
+    "web": "pnpm --filter web",
+    "nest": "nest"
+  },
+  "dependencies": {
+    "@nestjs/cli": "^9.1.8"
+  }
+}

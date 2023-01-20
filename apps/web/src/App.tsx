@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PlanetDto } from "@redux-killer/dtos/planet.dto";
 import { useQuery } from "@tanstack/react-query";
-import { List, Title } from "@mantine/core";
+import { List, Paper, Title } from "@mantine/core";
 import { IconPlanet } from "@tabler/icons";
 import { Layout } from "./Layout";
 import { CreatePlanetForm } from "./CreatePlanetForm";
@@ -21,9 +21,9 @@ export const App: FC = () => {
 
         <CreatePlanetForm />
 
-        {isLoading && (<div>🔄</div>)}
+        {isLoading && (<Paper mt={"md"}>🔄</Paper>)}
 
-        <List icon={<IconPlanet />}>
+        <List mt={"md"} icon={<IconPlanet />}>
           {planets?.map((planet) => (
             <List.Item key={planet.url}>
               {planet.name}

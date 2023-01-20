@@ -1,13 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
-import axios from "axios";
+import { Controller, Get, Param } from "@nestjs/common";
+import { AllPlanetsDto, PlanetDto } from "@redux-killer/dtos/planet.dto";
+import { AppService } from "./app.service";
 
 @Controller("/api")
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('/hello')
-  async getHello(): Promise<string> {
-    return (await axios.get("https://swapi.dev/api/planets/3/")).data;
+  @Get('/planets/:planetId')
+  async getPlanetById(@Param("planetId") planetId: string): Promise<PlanetDto> {
+    return this.appService.getPlanetById(planetId);
+  }
+
+  @Get('/planets')
+  async getAllPlanets(): Promise<PlanetDto[]> {
+    return this.appService.getAllPlanets();
   }
 }

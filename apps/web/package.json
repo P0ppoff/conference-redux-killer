@@ -16,12 +16,14 @@
     "@mantine/modals": "^5.10.1",
     "@mantine/notifications": "^5.10.1",
     "@redux-killer/dtos": "workspace:0.0.0",
+    "@reduxjs/toolkit": "^1.9.1",
     "@tabler/icons": "^1.119.0",
     "@tanstack/react-query": "^4.22.0",
     "dayjs": "^1.11.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.42.1",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.7.0"
   },
   "devDependencies": {

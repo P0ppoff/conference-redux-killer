@@ -10,6 +10,8 @@ Redux est une librairie pour la gestion de l’état global dans les application
 l’application dans un seul store centralisé, et de gérer les modifications de cet état en utilisant des **actions** et
 des **reducers**.
 
+FAIRE UN PUTAIN DE SCHEMA
+
 Les **actions** sont des objets qui décrivent une modification souhaitée de l’état de l’application, comme l’ajout d’un
 élément à une liste ou la modification d’une propriété d’un objet. Les **reducers** sont des fonctions qui prennent en
 entrée l’état actuel de l’application et une action et retournent un nouvel état mis à jour en fonction de cette action.

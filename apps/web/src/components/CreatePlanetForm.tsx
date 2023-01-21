@@ -9,19 +9,19 @@ export const CreatePlanetForm: FC = () => {
   const {} = useMutation((planetName: string) =>
     fetch("/planets/new", {
       method: "POST",
-      body: JSON.stringify({ planetName })
+      body: JSON.stringify({ planetName }),
     })
   );
 
-  const onSubmit = () => {
-
-  };
+  const onSubmit = () => {};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller control={control} name={"planetName"} render={({ field }) =>
-        <Input {...field} />
-      } />
+      <Controller
+        control={control}
+        name={"planetName"}
+        render={({ field }) => <Input {...field} />}
+      />
     </form>
   );
 };

@@ -11,7 +11,7 @@ import {
   Title,
 } from "@mantine/core";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { IconBrandRedux, IconPlanet } from "@tabler/icons";
+import { IconBrandRedux, IconWorld } from "@tabler/icons";
 
 export const Layout: FC = () => {
   const { pathname } = useLocation();
@@ -34,7 +34,7 @@ export const Layout: FC = () => {
               component={Link}
               to={"/planets"}
               label="Planets"
-              icon={<IconPlanet size={16} stroke={1.5} />}
+              icon={<IconWorld size={16} stroke={1.5} />}
               active={isPlanetsTanStackLinkActive}
             />
             <NavLink

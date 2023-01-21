@@ -24,6 +24,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.0.0
       '@typescript-eslint/parser': ^5.0.0
       axios: ^1.2.3
+      axios-cache-interceptor: ^1.0.0
       eslint: ^8.0.1
       eslint-config-prettier: ^8.3.0
       eslint-plugin-prettier: ^4.0.0
@@ -44,6 +45,7 @@ importers:
       '@nestjs/platform-express': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
       '@redux-killer/dtos': link:../../packages/dto
       axios: 1.2.3
+      axios-cache-interceptor: 1.0.0_axios@1.2.3
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
     devDependencies:
@@ -2142,6 +2144,18 @@ packages:
   /asynckit/0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
+  /axios-cache-interceptor/1.0.0_axios@1.2.3:
+    resolution: {integrity: sha512-gjgWfsmF4MHNbFxVckH6zhFbovlI6W1eYepyBNPjGTjMFhVZWM+/nvCCXHnkK520xJ+Kt+1r4lqIXSz6dcjr2w==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      axios: ^1
+    dependencies:
+      axios: 1.2.3
+      cache-parser: 1.2.4
+      fast-defer: 1.1.7
+      object-code: 1.2.4
+    dev: false
+
   /axios/1.2.3:
     resolution: {integrity: sha512-pdDkMYJeuXLZ6Xj/Q5J3Phpe+jbGdsSzlQaFVkMQzRUL05+6+tetX8TV3p4HrU4kzuO9bt+io/yGQxuyxA/xcw==}
     dependencies:
@@ -2322,6 +2336,10 @@ packages:
   /bytes/3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
+
+  /cache-parser/1.2.4:
+    resolution: {integrity: sha512-O0KwuHuJnbHUrghHi2kGp0SxnWSIBXTYt7M8WVhW0kbPRUNUKoE/Of6e1rRD6AAxmfxFunKnt90yEK09D+sc5g==}
+    dev: false
 
   /call-bind/1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
@@ -3185,6 +3203,10 @@ packages:
 
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
+
+  /fast-defer/1.1.7:
+    resolution: {integrity: sha512-tJ01ulDWT2WhqxMKS20nXX6wyX2iInBYpbN3GO7yjKwXMY4qvkdBRxak9IFwBLlFDESox+SwSvqMCZDfe1tqeg==}
+    dev: false
 
   /fast-diff/1.2.0:
     resolution: {integrity: sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==}
@@ -4461,6 +4483,10 @@ packages:
   /object-assign/4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+
+  /object-code/1.2.4:
+    resolution: {integrity: sha512-uGq4ETUuWe+GA586NXEriiaozNuff+YNFXlpD8cVrM1GoiuTZpCABP+bZCWDrvQDoCiSTyiWAFHD/HF/iwhb2w==}
+    dev: false
 
   /object-hash/3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}

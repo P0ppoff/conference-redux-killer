@@ -3,7 +3,7 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
-import { PlanetDto } from "@redux-killer/dtos/planet.dto";
+import { PlanetDto } from "packages/dto/planet.dto";
 
 export type PlanetsState = {
   isLoading: boolean;
@@ -11,7 +11,17 @@ export type PlanetsState = {
 };
 
 export const fetchPlanets = createAsyncThunk("planets/fetchPlanets", () =>
-  fetch("/api/planets").then((response) => response.json())
+  fetch("/api/planets")
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw response.json();
+      }
+    })
+    .catch((e) => {
+      // TODO: store error
+    })
 );
 
 const planetsSlice = createSlice({

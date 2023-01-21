@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { router } from "./router";
+import { ModalsProvider } from "@mantine/modals";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +21,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           withNormalizeCSS
           theme={{ colorScheme: "dark" }}
         >
-          <RouterProvider router={router} />
+          <ModalsProvider>
+            <RouterProvider router={router} />
+          </ModalsProvider>
         </MantineProvider>
       </QueryClientProvider>
     </Provider>

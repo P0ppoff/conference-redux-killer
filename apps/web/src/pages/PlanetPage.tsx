@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PlanetDto } from "@redux-killer/dtos/planet.dto";
 import { useQuery } from "@tanstack/react-query";
-import { Paper, Tabs, Title } from "@mantine/core";
+import { Loader, Tabs, Title } from "@mantine/core";
 import {
   generatePath,
   Outlet,
@@ -27,7 +27,7 @@ export const PlanetPage: FC = () => {
 
   return (
     <section>
-      {isLoading && <Paper mt={"md"}>🔄</Paper>}
+      {isLoading && <Loader color={"cyan"} mt={"md"} />}
 
       {planet != null && (
         <>

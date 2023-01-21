@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { PlanetsFilters } from "../types/filters.types";
-import { Button, Flex, NativeSelect, NativeSelectProps } from "@mantine/core";
+import { Button, Flex, NativeSelect } from "@mantine/core";
+import { allFilms } from "../data/films";
 
 export const FilmsFilter: FC<{
   onSubmit: (data: PlanetsFilters | null) => void;
@@ -12,38 +13,6 @@ export const FilmsFilter: FC<{
     },
   });
 
-  const allFilms: NativeSelectProps["data"] = [
-    {
-      value: "",
-      label: "Which film is your favorite?",
-      disabled: true,
-    },
-    {
-      value: "https://swapi.dev/api/films/4/",
-      label: "The Phantom Menace",
-    },
-    {
-      value: "https://swapi.dev/api/films/5/",
-      label: "Attack of the Clones",
-    },
-    {
-      value: "https://swapi.dev/api/films/6/",
-      label: "Revenge of the Sith",
-    },
-    {
-      value: "https://swapi.dev/api/films/1/",
-      label: "A New Hope",
-    },
-    {
-      value: "https://swapi.dev/api/films/2/",
-      label: "The Empire Strikes Back",
-    },
-    {
-      value: "https://swapi.dev/api/films/3/",
-      label: "Return of the Jedi",
-    },
-  ];
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Flex justify={"space-between"} align={"center"}>
@@ -51,7 +20,18 @@ export const FilmsFilter: FC<{
           name={"filmsFilter"}
           control={control}
           render={({ field }) => (
-            <NativeSelect {...field} label={"Filter by film"} data={allFilms} />
+            <NativeSelect
+              {...field}
+              label={"Filter by film"}
+              data={[
+                {
+                  value: "",
+                  label: "Which film is your favorite?",
+                  disabled: true,
+                },
+                ...allFilms,
+              ]}
+            />
           )}
         />
         <Button.Group>

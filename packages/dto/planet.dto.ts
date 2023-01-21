@@ -24,3 +24,13 @@ export interface PlanetDto {
   edited: Date; //"2014-12-20T20:58:18.421000Z";
   url: string; //"https://swapi.dev/api/planets/3/";
 }
+
+export interface NewPlanetDto {
+  name: string;
+  climate: string[];
+  population: number;
+  gravity: number;
+  terrain: string[];
+  rotationPeriod: number;
+  films: string[];
+}

@@ -35,6 +35,7 @@ export const Layout: FC = () => {
               to={"/planets"}
               label="Planets"
               icon={<IconWorld size={16} stroke={1.5} />}
+              color={"yellow"}
               active={isPlanetsTanStackLinkActive}
             />
             <NavLink

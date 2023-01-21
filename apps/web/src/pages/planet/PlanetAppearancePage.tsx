@@ -24,7 +24,7 @@ export const PlanetAppearancePage: FC = () => {
           ) : (
             <List>
               {planet.films.map((film) => (
-                <List.Item>{film}</List.Item>
+                <List.Item key={film}>{film}</List.Item>
               ))}
             </List>
           )}
@@ -53,7 +53,7 @@ export const PlanetAppearancePage: FC = () => {
           ) : (
             <List>
               {planet.residents.map((resident) => (
-                <List.Item>{resident}</List.Item>
+                <List.Item key={resident}>{resident}</List.Item>
               ))}
             </List>
           )}

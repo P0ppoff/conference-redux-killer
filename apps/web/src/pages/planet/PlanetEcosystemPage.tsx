@@ -38,7 +38,7 @@ export const PlanetEcosystemPage: FC = () => {
 
       <Group position={"apart"} mt={"md"} mb={"xs"}>
         <Text weight={500}>{terrainFormatted}</Text>
-        <Badge color={"pink"} variant={"light"}>
+        <Badge color={"lime"} variant={"light"}>
           {`Population ${populationIntl}`}
         </Badge>
       </Group>
@@ -49,7 +49,7 @@ export const PlanetEcosystemPage: FC = () => {
 
       <Button
         variant={"light"}
-        color={"blue"}
+        color={"yellow"}
         title={"Not available yet, wait 2100!"}
         fullWidth
         mt={"md"}

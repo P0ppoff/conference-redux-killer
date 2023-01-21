@@ -37,6 +37,7 @@ export const PlanetPage: FC = () => {
 
           <Tabs
             value={pathname ?? "ecosystem"}
+            color={"yellow"}
             onTabChange={(routeName) => {
               navigate(
                 routeName ??

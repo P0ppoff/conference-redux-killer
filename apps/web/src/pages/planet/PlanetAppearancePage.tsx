@@ -1,17 +1,11 @@
 import { FC } from "react";
 import { IconCardboards, IconMovie, IconUsers } from "@tabler/icons";
 import { Accordion, List, Skeleton } from "@mantine/core";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 import { PlanetDto } from "@redux-killer/dtos/planet.dto";
 
-export const PlanetAppearancePage: FC = () => {
-  const { planetId } = useParams() as {
-    planetId: string;
-  };
-
-  const { data: planet } = useQuery<PlanetDto>(["planets", planetId]);
-
+export const PlanetAppearancePage: FC<{ planet: undefined | PlanetDto }> = ({
+  planet,
+}) => {
   return (
     <Accordion m={"lg"} variant="contained">
       <Accordion.Item value="movie">

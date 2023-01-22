@@ -1,8 +1,18 @@
-import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  UseInterceptors,
+} from '@nestjs/common';
 import { NewPlanetDto, PlanetDto } from '@redux-killer/dtos/planet.dto';
 import { AppService } from './app.service';
+import { DelayInterceptor } from './delay.interceptor';
 
 @Controller('/api')
+@UseInterceptors(DelayInterceptor)
 export class AppController {
   constructor(private readonly appService: AppService) {}
 

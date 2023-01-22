@@ -1,29 +1,34 @@
 import { FC } from "react";
 import { PlanetDto } from "@redux-killer/dtos/planet.dto";
-import { useQuery } from "@tanstack/react-query";
 import { Loader, Tabs, Title } from "@mantine/core";
 import {
   generatePath,
   Outlet,
   useLocation,
   useNavigate,
-  useParams,
 } from "react-router-dom";
-import { HttpClient } from "../httpClient";
 import { IconBrandDisney, IconMacro } from "@tabler/icons";
+import { Paths } from "../routes/paths";
 
-export const PlanetPage: FC = () => {
-  const { planetId } = useParams() as {
-    planetId: string;
-  };
-
+export const PlanetPage: FC<{
+  planetId: string;
+  planet: undefined | PlanetDto;
+  isLoading: boolean;
+  planetEcosystemPath:
+    | typeof Paths.REDUX_PLANET_ECOSYSTEM
+    | typeof Paths.TAN_STACK_PLANET_ECOSYSTEM;
+  planetAppearancePath:
+    | typeof Paths.REDUX_PLANET_APPEARANCE
+    | typeof Paths.TAN_STACK_PLANET_APPEARANCE;
+}> = ({
+  planetId,
+  planet,
+  isLoading,
+  planetEcosystemPath,
+  planetAppearancePath,
+}) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  const { data: planet, isLoading } = useQuery<PlanetDto>(
-    ["planets", planetId],
-    () => HttpClient.get(`/api/planets/${planetId}`)
-  );
 
   return (
     <section>
@@ -40,14 +45,13 @@ export const PlanetPage: FC = () => {
             color={"yellow"}
             onTabChange={(routeName) => {
               navigate(
-                routeName ??
-                  generatePath("/planet/:planetId/ecosystem", { planetId })
+                routeName ?? generatePath(planetEcosystemPath, { planetId })
               );
             }}
           >
             <Tabs.List>
               <Tabs.Tab
-                value={generatePath("/planet/:planetId/ecosystem", {
+                value={generatePath(planetEcosystemPath, {
                   planetId,
                 })}
                 icon={<IconMacro size={14} />}
@@ -55,7 +59,7 @@ export const PlanetPage: FC = () => {
                 Ecosystem
               </Tabs.Tab>
               <Tabs.Tab
-                value={generatePath("/planet/:planetId/appearance", {
+                value={generatePath(planetAppearancePath, {
                   planetId,
                 })}
                 icon={<IconBrandDisney size={14} />}

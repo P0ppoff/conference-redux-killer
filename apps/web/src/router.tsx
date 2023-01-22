@@ -1,30 +1,58 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import { Layout } from "./components/Layout";
-import { PlanetsPage } from "./pages/PlanetsPage";
-import { PlanetPage } from "./pages/PlanetPage";
-import { PlanetAppearancePage } from "./pages/planet/PlanetAppearancePage";
-import { PlanetEcosystemPage } from "./pages/planet/PlanetEcosystemPage";
+import { TanStackPlanetsRoute } from "./routes/TanStackPlanetsRoute";
+import { ReduxPlanetsRoute } from "./routes/ReduxPlanetsRoute";
+import { Paths, UnreachablePaths } from "./routes/paths";
+import { TanStackPlanetRoute } from "./routes/TanStackPlanetRoute";
+import { ReduxPlanetRoute } from "./routes/ReduxPlanetRoute";
+import { MyselfProfileRoute } from "./routes/MyselfProfileRoute";
+import { TanStackPlanetEcosystemRoute } from "./routes/planet/TanStackPlanetEcosystemRoute";
+import { TanStackPlanetAppearanceRoute } from "./routes/planet/TanStackPlanetAppearanceRoute";
+import { ReduxPlanetEcosystemRoute } from "./routes/planet/ReduxPlanetEcosystemRoute";
+import { ReduxPlanetAppearanceRoute } from "./routes/planet/ReduxPlanetAppearanceRoute";
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
-        index: true,
-        path: "/planets",
-        element: <PlanetsPage />,
+        path: Paths.MYSELF_PROFILE,
+        element: <MyselfProfileRoute />,
       },
       {
-        path: "/planet/:planetId",
-        element: <PlanetPage />,
+        index: true,
+        path: Paths.TAN_STACK_PLANETS,
+        element: <TanStackPlanetsRoute />,
+      },
+      {
+        path: Paths.REDUX_PLANETS,
+        element: <ReduxPlanetsRoute />,
+      },
+      {
+        path: UnreachablePaths.TAN_STACK_PLANET,
+        element: <TanStackPlanetRoute />,
         children: [
           {
-            path: "/planet/:planetId/ecosystem",
-            element: <PlanetEcosystemPage />,
+            path: Paths.TAN_STACK_PLANET_ECOSYSTEM,
+            element: <TanStackPlanetEcosystemRoute />,
           },
           {
-            path: "/planet/:planetId/appearance",
-            element: <PlanetAppearancePage />,
+            path: Paths.TAN_STACK_PLANET_APPEARANCE,
+            element: <TanStackPlanetAppearanceRoute />,
+          },
+        ],
+      },
+      {
+        path: UnreachablePaths.REDUX_PLANET,
+        element: <ReduxPlanetRoute />,
+        children: [
+          {
+            path: Paths.REDUX_PLANET_ECOSYSTEM,
+            element: <ReduxPlanetEcosystemRoute />,
+          },
+          {
+            path: Paths.REDUX_PLANET_APPEARANCE,
+            element: <ReduxPlanetAppearanceRoute />,
           },
         ],
       },
@@ -32,6 +60,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    loader: () => redirect("/planets"),
+    loader: () => redirect(Paths.TAN_STACK_PLANETS),
   },
 ]);

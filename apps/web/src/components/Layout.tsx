@@ -3,21 +3,23 @@ import {
   AppShell,
   Avatar,
   Container,
-  Flex,
   Header,
   Navbar,
   NavLink,
-  Text,
   Title,
 } from "@mantine/core";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { IconBrandRedux, IconWorld } from "@tabler/icons";
+import { Paths } from "../routes/paths";
 
 export const Layout: FC = () => {
   const { pathname } = useLocation();
 
-  const isPlanetsTanStackLinkActive = pathname === "/planets";
-  const isPlanetsReduxLinkActive = pathname === "/planets-redux";
+  const isPlanetsTanStackLinkActive = pathname.includes(
+    Paths.TAN_STACK_PLANETS
+  );
+  const isPlanetsReduxLinkActive = pathname.includes(Paths.REDUX_PLANETS);
+  const isMyselfLinkActive = pathname.includes(Paths.MYSELF_PROFILE);
 
   return (
     <AppShell
@@ -32,7 +34,7 @@ export const Layout: FC = () => {
           <Navbar.Section grow mt="md">
             <NavLink
               component={Link}
-              to={"/planets"}
+              to={Paths.TAN_STACK_PLANETS}
               label="Planets"
               icon={<IconWorld size={16} stroke={1.5} />}
               color={"yellow"}
@@ -40,17 +42,22 @@ export const Layout: FC = () => {
             />
             <NavLink
               component={Link}
-              to={"/planets-redux"}
+              to={Paths.REDUX_PLANETS}
               label="Planets Redux"
               icon={<IconBrandRedux size={16} stroke={1.5} />}
+              color={"yellow"}
               active={isPlanetsReduxLinkActive}
             />
           </Navbar.Section>
           <Navbar.Section>
-            <Flex gap={"xl"} align={"center"}>
-              <Avatar src="avatar.jpg" alt="it's me" />
-              <Text>Crafted with ♥</Text>
-            </Flex>
+            <NavLink
+              component={Link}
+              to={Paths.MYSELF_PROFILE}
+              active={isMyselfLinkActive}
+              icon={<Avatar src="avatar.jpg" alt="it's me" />}
+              color={"yellow"}
+              label={"Crafted with ♥"}
+            />
           </Navbar.Section>
         </Navbar>
       }

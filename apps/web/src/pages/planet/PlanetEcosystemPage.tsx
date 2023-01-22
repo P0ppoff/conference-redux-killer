@@ -1,18 +1,12 @@
 import { FC } from "react";
 import { Badge, Button, Card, Group, Image, Text } from "@mantine/core";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { PlanetDto } from "@redux-killer/dtos/planet.dto";
 
 const IntlNumberFormat = new Intl.NumberFormat("en-EN");
 
-export const PlanetEcosystemPage: FC = () => {
-  const { planetId } = useParams() as {
-    planetId: string;
-  };
-
-  const { data: planet } = useQuery<PlanetDto>(["planets", planetId]);
-
+export const PlanetEcosystemPage: FC<{ planet: undefined | PlanetDto }> = ({
+  planet,
+}) => {
   if (planet == null) {
     return null; // TODO make return loading card
   }
@@ -32,7 +26,7 @@ export const PlanetEcosystemPage: FC = () => {
             "https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
           }
           height={160}
-          alt={"Norway"}
+          alt={`Planet named ${planet.name}`}
         />
       </Card.Section>
 

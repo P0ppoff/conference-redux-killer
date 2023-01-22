@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { PlanetDto } from "@redux-killer/dtos/planet.dto";
-import { useQuery } from "@tanstack/react-query";
 import { Anchor, Divider, List, Loader, Title } from "@mantine/core";
 import { IconPlanet } from "@tabler/icons";
 import { generatePath, Link } from "react-router-dom";
@@ -8,12 +7,15 @@ import { FilmsFilter } from "../components/FilmsFilter";
 import { PlanetsFilters } from "../types/filters.types";
 import { RegisterNewPlanet } from "../components/RegisterNewPlanet";
 import { ScrollToTop } from "../components/ScrollToTop";
+import { Paths } from "../routes/paths";
 
-export const PlanetsPage: FC = () => {
-  const { data: planets, isLoading } = useQuery<PlanetDto[]>(["planets"], () =>
-    fetch("/api/planets").then((response) => response.json())
-  );
-
+export const PlanetsPage: FC<{
+  planets: undefined | PlanetDto[];
+  isLoading: boolean;
+  planetPath:
+    | typeof Paths.TAN_STACK_PLANET_ECOSYSTEM
+    | typeof Paths.REDUX_PLANET_ECOSYSTEM;
+}> = ({ planets, isLoading, planetPath }) => {
   const [filters, setFilters] = useState<PlanetsFilters | null>(null);
   const onSubmit = (filtersFrom: PlanetsFilters | null) => {
     setFilters(filtersFrom);
@@ -45,7 +47,7 @@ export const PlanetsPage: FC = () => {
               <Anchor
                 color={"yellow"}
                 component={Link}
-                to={generatePath("/planet/:planetId/ecosystem", {
+                to={generatePath(planetPath, {
                   planetId: planet.id,
                 })}
               >

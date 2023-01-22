@@ -3,15 +3,24 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
-import { PlanetDto } from "packages/dto/planet.dto";
+import { PlanetDto } from "@redux-killer/dtos/planet.dto";
 
-export type PlanetsState = {
+export interface PlanetsState {
   isLoading: boolean;
-  list: null | PlanetDto[];
+  list: undefined | PlanetDto[];
+  planet: undefined | PlanetDto;
+  isPlanetLoading: boolean;
+}
+
+const initialState: PlanetsState = {
+  list: undefined,
+  isLoading: false,
+  planet: undefined,
+  isPlanetLoading: false,
 };
 
-export const fetchPlanets = createAsyncThunk("planets/fetchPlanets", () =>
-  fetch("/api/planets")
+export const fetchPlanets = createAsyncThunk("planets/fetchPlanets", () => {
+  return fetch("/api/planets")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -21,20 +30,44 @@ export const fetchPlanets = createAsyncThunk("planets/fetchPlanets", () =>
     })
     .catch((e) => {
       // TODO: store error
-    })
+    });
+});
+
+export const fetchPlanet = createAsyncThunk(
+  "planets/fetchPlanet",
+  (planetId: string) => {
+    return fetch(`/api/planets/${planetId}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw response.json();
+        }
+      })
+      .catch((e) => {
+        // TODO: store error
+      });
+  }
 );
 
 const planetsSlice = createSlice({
   name: "planets",
-  initialState: {
-    list: [],
-    isLoading: false,
-  } as PlanetsState,
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPlanets.fulfilled, (state, action) => {
-      // Add user to the state array
       state.list = action.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchPlanets.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchPlanet.fulfilled, (state, action) => {
+      state.planet = action.payload;
+      state.isPlanetLoading = false;
+    });
+    builder.addCase(fetchPlanet.pending, (state, action) => {
+      state.isPlanetLoading = true;
     });
   },
 });

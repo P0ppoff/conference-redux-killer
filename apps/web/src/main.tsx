@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { router } from "./router";
 import { ModalsProvider } from "@mantine/modals";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <RouterProvider router={router} />
           </ModalsProvider>
         </MantineProvider>
+        <ReactQueryDevtools initialIsOpen={false} position={"top-right"} />
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>

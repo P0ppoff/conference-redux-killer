@@ -38,7 +38,7 @@ export const WhyReduxRoute: FC = () => (
       requêtes réseau et la navigation.
     </Text>
     <Blockquote color="yellow" cite={"Jules HABLOT"}>
-      Dans 85% des cas d’utilisations, Redux permet de créer un cache de votre
+      Dans 80% des cas d’utilisations, Redux permet de créer un cache de votre
       API.
     </Blockquote>
     <Box h={300} />

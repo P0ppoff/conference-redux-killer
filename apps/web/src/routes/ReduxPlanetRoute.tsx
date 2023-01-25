@@ -13,7 +13,7 @@ export const ReduxPlanetRoute: FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchPlanet(planetId));
-  }, [planetId]);
+  }, [dispatch, fetchPlanet, planetId]);
 
   const isLoading = useAppSelector((state) => state.isPlanetLoading);
   const planet = useAppSelector((state) => state.planet);

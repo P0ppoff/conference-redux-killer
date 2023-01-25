@@ -13,7 +13,7 @@ export const ReduxPlanetsRoute: FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchPlanets());
-  }, []);
+  }, [dispatch, fetchPlanets]);
 
   const onSubmitNewPlanet = (data: NewPlanetDto) => {
     dispatch(createNewPlanet(data));

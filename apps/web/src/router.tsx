@@ -10,17 +10,27 @@ import { TanStackPlanetEcosystemRoute } from "./routes/planet/TanStackPlanetEcos
 import { TanStackPlanetAppearanceRoute } from "./routes/planet/TanStackPlanetAppearanceRoute";
 import { ReduxPlanetEcosystemRoute } from "./routes/planet/ReduxPlanetEcosystemRoute";
 import { ReduxPlanetAppearanceRoute } from "./routes/planet/ReduxPlanetAppearanceRoute";
+import { WhyReduxRoute } from "./routes/WhyReduxRoute";
+import { OpenFeedBackZenikaRoute } from "./routes/OpenFeedBackZenikaRoute";
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
+        index: true,
         path: Paths.MYSELF_PROFILE,
         element: <MyselfProfileRoute />,
       },
       {
-        index: true,
+        path: Paths.WHY_REDUX,
+        element: <WhyReduxRoute />,
+      },
+      {
+        path: Paths.OPENFEEDBACK_ZENIKA,
+        element: <OpenFeedBackZenikaRoute />,
+      },
+      {
         path: Paths.TAN_STACK_PLANETS,
         element: <TanStackPlanetsRoute />,
       },

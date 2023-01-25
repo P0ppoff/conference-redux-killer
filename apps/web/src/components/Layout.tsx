@@ -9,7 +9,12 @@ import {
   Title,
 } from "@mantine/core";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { IconBrandRedux, IconWorld } from "@tabler/icons";
+import {
+  IconAffiliate,
+  IconBrandRedux,
+  IconQrcode,
+  IconWorld,
+} from "@tabler/icons";
 import { Paths } from "../routes/paths";
 
 export const Layout: FC = () => {
@@ -20,13 +25,17 @@ export const Layout: FC = () => {
   );
   const isPlanetsReduxLinkActive = pathname.includes(Paths.REDUX_PLANETS);
   const isMyselfLinkActive = pathname.includes(Paths.MYSELF_PROFILE);
+  const isWhyReduxLinkActive = pathname.includes(Paths.WHY_REDUX);
+  const isOpenfeedbackZenikaLinkActive = pathname.includes(
+    Paths.OPENFEEDBACK_ZENIKA
+  );
 
   return (
     <AppShell
       padding="md"
       header={
         <Header height={60} p="xs">
-          <Title order={1}>Redux Killer</Title>
+          <Title order={1}>Redux Killer 🔪</Title>
         </Header>
       }
       navbar={
@@ -34,8 +43,16 @@ export const Layout: FC = () => {
           <Navbar.Section grow mt="md">
             <NavLink
               component={Link}
+              to={Paths.WHY_REDUX}
+              label="Why REDUX?"
+              icon={<IconBrandRedux size={16} stroke={1.5} />}
+              color={"yellow"}
+              active={isWhyReduxLinkActive}
+            />
+            <NavLink
+              component={Link}
               to={Paths.TAN_STACK_PLANETS}
-              label="Planets"
+              label="TanStack Planets (solution)"
               icon={<IconWorld size={16} stroke={1.5} />}
               color={"yellow"}
               active={isPlanetsTanStackLinkActive}
@@ -44,12 +61,21 @@ export const Layout: FC = () => {
               component={Link}
               to={Paths.REDUX_PLANETS}
               label="Planets Redux"
-              icon={<IconBrandRedux size={16} stroke={1.5} />}
+              icon={<IconAffiliate size={16} stroke={1.5} />}
               color={"yellow"}
               active={isPlanetsReduxLinkActive}
             />
           </Navbar.Section>
           <Navbar.Section>
+            <NavLink
+              component={Link}
+              to={Paths.OPENFEEDBACK_ZENIKA}
+              active={isOpenfeedbackZenikaLinkActive}
+              icon={<IconQrcode size={16} stroke={1.5} />}
+              color={"yellow"}
+              label={"OpenFeedBack & Zenika"}
+            />
+
             <NavLink
               component={Link}
               to={Paths.MYSELF_PROFILE}

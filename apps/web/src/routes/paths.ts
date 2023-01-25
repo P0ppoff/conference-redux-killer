@@ -9,6 +9,8 @@ export const UnreachablePaths = {
 
 export const Paths = {
   MYSELF_PROFILE: "/myself",
+  WHY_REDUX: "/why-redux",
+  OPENFEEDBACK_ZENIKA: "/openfeedback-zenika",
   TAN_STACK_PLANETS: "/planets",
   TAN_STACK_PLANET_ECOSYSTEM: `${UnreachablePaths.TAN_STACK_PLANET}/ecosystem`,
   TAN_STACK_PLANET_APPEARANCE: `${UnreachablePaths.TAN_STACK_PLANET}/appearance`,

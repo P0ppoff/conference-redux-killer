@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { HttpClient } from "../httpClient";
 import { PlanetPage } from "../pages/PlanetPage";
 import { Paths } from "./paths";
+import { apiBuilder } from "../utils/apiBuilder";
+import { keys } from "../utils/keys";
 
 export const TanStackPlanetRoute: FC = () => {
   const { planetId } = useParams() as {
@@ -12,8 +14,8 @@ export const TanStackPlanetRoute: FC = () => {
   };
 
   const { data: planet, isLoading } = useQuery<PlanetDto>(
-    ["planets", planetId],
-    () => HttpClient.get(`/api/planets/${planetId}`)
+    keys.planetById(planetId),
+    () => HttpClient.get(apiBuilder.planetById(planetId))
   );
 
   return (

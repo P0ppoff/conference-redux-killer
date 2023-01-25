@@ -1,5 +1,4 @@
-import { FC, useId } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { FC } from "react";
 import {
   Button,
   Flex,
@@ -11,58 +10,12 @@ import { closeAllModals } from "@mantine/modals";
 import { Controller, useForm } from "react-hook-form";
 import { allFilms } from "../data/films";
 import { climates, terrains } from "../data/ecosystems";
-import { HttpClient } from "../httpClient";
-import { NewPlanetDto, PlanetDto } from "@redux-killer/dtos/planet.dto";
+import { NewPlanetDto } from "@redux-killer/dtos/planet.dto";
 
-export const RegisterNewPlanetModal: FC = () => {
-  const queryClient = useQueryClient();
-
-  const id = useId();
-
+export const RegisterNewPlanetModal: FC<{
+  onSubmit: (data: NewPlanetDto) => void;
+}> = ({ onSubmit }) => {
   const { control, handleSubmit } = useForm<NewPlanetDto>();
-
-  const { mutateAsync } = useMutation(
-    (data: NewPlanetDto) =>
-      HttpClient.post("/api/planets/new", {
-        body: JSON.stringify(data),
-      }),
-    {
-      onMutate: async (planet) => {
-        await queryClient.cancelQueries(["planets"]);
-        queryClient.setQueryData(["planets"], (oldPlanets?: PlanetDto[]) => {
-          if (oldPlanets == null) {
-            return oldPlanets;
-          }
-          const futurePlanet: PlanetDto = {
-            id,
-            diameter: "unknown",
-            edited: new Date(),
-            created: new Date(),
-            terrain: planet.terrain.join(", "),
-            rotation_period: String(planet.rotationPeriod),
-            url: id,
-            surface_water: "unknown",
-            orbital_period: "unknown",
-            films: planet.films,
-            residents: [],
-            name: planet.name,
-            gravity: String(planet.gravity),
-            population: String(planet.population),
-            climate: planet.climate.join(", "),
-          };
-          return [futurePlanet, ...oldPlanets];
-        });
-      },
-      onSuccess: (allPlanets: PlanetDto[]) => {
-        queryClient.setQueryData(["planets"], () => allPlanets);
-      },
-    }
-  );
-
-  const onSubmit = async (data: NewPlanetDto) => {
-    await mutateAsync(data);
-    closeAllModals();
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { PlanetDto } from "@redux-killer/dtos/planet.dto";
+import { NewPlanetDto, PlanetDto } from "@redux-killer/dtos/planet.dto";
 import { Anchor, Divider, List, Loader, Title } from "@mantine/core";
 import { IconPlanet } from "@tabler/icons";
 import { generatePath, Link } from "react-router-dom";
@@ -15,9 +15,10 @@ export const PlanetsPage: FC<{
   planetPath:
     | typeof Paths.TAN_STACK_PLANET_ECOSYSTEM
     | typeof Paths.REDUX_PLANET_ECOSYSTEM;
-}> = ({ planets, isLoading, planetPath }) => {
+  onSubmitNewPlanet: (data: NewPlanetDto) => void;
+}> = ({ planets, isLoading, planetPath, onSubmitNewPlanet }) => {
   const [filters, setFilters] = useState<PlanetsFilters | null>(null);
-  const onSubmit = (filtersFrom: PlanetsFilters | null) => {
+  const onSubmitFilters = (filtersFrom: PlanetsFilters | null) => {
     setFilters(filtersFrom);
   };
 
@@ -27,11 +28,11 @@ export const PlanetsPage: FC<{
         Planets
       </Title>
 
-      <FilmsFilter onSubmit={onSubmit} />
+      <FilmsFilter onSubmit={onSubmitFilters} />
 
       <Divider my="sm" />
 
-      <RegisterNewPlanet />
+      <RegisterNewPlanet onSubmit={onSubmitNewPlanet} />
 
       {isLoading && <Loader color={"cyan"} mt={"md"} />}
 

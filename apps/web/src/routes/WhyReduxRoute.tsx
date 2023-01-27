@@ -14,7 +14,7 @@ export const WhyReduxRoute: FC = () => (
       des <Mark color={"yellow"}>actions</Mark> et des{" "}
       <Mark color={"yellow"}>reducers</Mark>.
     </Text>
-    <Image src={"./reduxdataflowdiagram.gif"} py={"md"} />
+    <Image src={"/reduxdataflowdiagram.gif"} py={"md"} />
     <Text>
       Les <Mark color={"yellow"}>actions</Mark> sont des objets qui décrivent
       une modification souhaitée de l’état de l’application, comme l’ajout d’un

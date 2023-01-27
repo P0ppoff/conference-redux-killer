@@ -4,7 +4,7 @@ import { Badge, Button, Card, Flex, Image, Text } from "@mantine/core";
 export const MyselfProfileRoute: FC = () => (
   <Card shadow={"sm"} p={"lg"} radius={"md"} withBorder>
     <Card.Section>
-      <Image src={"myself.jpg"} fit={"contain"} height={400} alt={"Norway"} />
+      <Image src={"/myself.jpg"} fit={"contain"} height={400} alt={"Norway"} />
     </Card.Section>
 
     <Flex justify={"space-between"} align={"center"} mt={"md"} mb={"xs"}>

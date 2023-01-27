@@ -9,9 +9,8 @@ import { router } from "./router";
 import { ModalsProvider } from "@mantine/modals";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const queryClient = new QueryClient(); // TODO: avoid default values
-
-// TODO: Zenika recrute, à ajouter sur tous les fichiers
+// TODO: Zenika recrute
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

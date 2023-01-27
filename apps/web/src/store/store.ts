@@ -46,7 +46,7 @@ export const createNewPlanet = createAsyncThunk(
       population: String(data.population),
       climate: data.climate.join(", "),
     };
-    dispatch(addNewPlanet(futurePlanet)); // TODO check is working
+    dispatch(addNewPlanet(futurePlanet));
     return HttpClient.post(apiBuilder.newPlanet(), {
       body: JSON.stringify(data),
     });

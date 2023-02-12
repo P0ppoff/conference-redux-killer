@@ -1,47 +1,46 @@
 # Redux Killer
 
-Comment ne pas refaire la roue ?
+Ce projet est la base de
+la [conférence donnée au Snowcamp 2023](https://snowcamp2023.sched.com/event/1EOvs/a-la-decouverte-de-tanstack-query-le-tueur-de-redux).
+Les feedbacks peuvent se trouver [ici](https://openfeedback.io/snowcamp23/2023-01-26/5c8a920139adb5ef1d1644ac9f60b53d),
+ils ont été plutôt positifs.
 
-## Redux rappels
+## Technologies
 
-C’est quoi cette lib ? Pourquoi est-elle si populaire ?
+C'est un simple monorepo pour montrer l'apport de [TanStack Query](https://tanstack.com/query/v4)
+vs. [Redux](https://redux-toolkit.js.org/) en [React](https://beta.reactjs.org/). Il y a un backend
+en [NestJS](https://nestjs.com/) pour temporiser nos appels et stocker de la donnée en mémoire.
 
-Redux est une librairie pour la gestion de l’état global dans les applications. Il permet de stocker l’état de
-l’application dans un seul store centralisé, et de gérer les modifications de cet état en utilisant des **actions** et
-des **reducers**.
+## Plan
 
-FAIRE UN PUTAIN DE SCHEMA
+```markdown
+# Redux rappels
 
-Les **actions** sont des objets qui décrivent une modification souhaitée de l’état de l’application, comme l’ajout d’un
-élément à une liste ou la modification d’une propriété d’un objet. Les **reducers** sont des fonctions qui prennent en
-entrée l’état actuel de l’application et une action et retournent un nouvel état mis à jour en fonction de cette action.
+# Montrer comment faire un appel et le mettre dans le cache
 
-Redux aide à gérer les mises à jour de l’état de l’application de manière organisée et prévisible. Il est souvent
-utilisé pour les applications de taille moyenne à grande qui nécessitent une gestion efficace de l’état pour garantir la
-performance et la fiabilité.
+# Gestion de l’état de loading
 
-En utilisant **React** seul, l’état de l’application est stocké à différents niveaux de composants, ce qui peut rendre
-difficile de suivre les modifications de l’état et d’assurer la synchronisation des données entre les différents
-composants. Cela peut également rendre difficile de gérer les effets de bord tels que les requêtes réseau et la
-navigation.
+# Gestion de l’état d’erreur
 
-## Montrer comment faire un appel et le mettre dans le cache
+# Re-essais sur erreur
 
-## Gestion de l’état de loading
-
-## Gestion de l’état d’erreur
-
-## Multiple retry when error
-
-## Save some data
-
-## Partage des données à travers les clés de cache
+# Partage des données à travers les clés de cache
 
 Avoir une page avec plusieurs onglets qui chargent la même donnée
 
-## Optimistic UI
+# Optimistic UI
 
-Pouvoir créer notre planète Terre et la voir directement
+Pouvoir créer notre planète Terre et la voir directement sans attendre le backend
 
-## Réutilisation des queries à travers des hooks
+# Réutilisation des queries à travers des hooks
+```
+
+## Améliorations possibles
+
+* Faire un bouton pour activer l'étoile de la mort, qui tue des planètes tous les 30 secondes.
+    * Permet de montrer comment rafraichir la donnée à intervals réguliers.
+
+## Remerciements
+
+Merci beaucoup à https://swapi.dev/ pour avoir fourni une API et des données gratuitement.
 

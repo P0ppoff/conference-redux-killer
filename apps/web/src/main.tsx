@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <MantineProvider
           withGlobalStyles
           withNormalizeCSS
-          theme={{ colorScheme: "dark" }}
+          theme={{ colorScheme: "light" }}
         >
           <ModalsProvider>
             <RouterProvider router={router} />

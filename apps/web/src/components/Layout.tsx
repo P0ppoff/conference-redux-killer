@@ -9,12 +9,7 @@ import {
   Title,
 } from "@mantine/core";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import {
-  IconAffiliate,
-  IconBrandRedux,
-  IconQrcode,
-  IconWorld,
-} from "@tabler/icons";
+import { IconAffiliate, IconBrandRedux, IconWorld } from "@tabler/icons";
 import { Paths } from "../routes/paths";
 
 export const Layout: FC = () => {
@@ -67,14 +62,17 @@ export const Layout: FC = () => {
             />
           </Navbar.Section>
           <Navbar.Section>
-            <NavLink
-              component={Link}
-              to={Paths.OPENFEEDBACK_ZENIKA}
-              active={isOpenfeedbackZenikaLinkActive}
-              icon={<IconQrcode size={16} stroke={1.5} />}
-              color={"yellow"}
-              label={"OpenFeedBack & Zenika"}
-            />
+            {/*
+             * SNOWCAMP ONLY
+             * <NavLink
+             *   component={Link}
+             *   to={Paths.OPENFEEDBACK_ZENIKA}
+             *   active={isOpenfeedbackZenikaLinkActive}
+             *   icon={<IconQrcode size={16} stroke={1.5} />}
+             *   color={"yellow"}
+             *   label={"OpenFeedBack & Zenika"}
+             * />
+             */}
 
             <NavLink
               component={Link}

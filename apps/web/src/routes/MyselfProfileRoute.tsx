@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Badge, Button, Card, Flex, Image, Text } from "@mantine/core";
+import { Badge, Card, Flex, Image, Text } from "@mantine/core";
 
 export const MyselfProfileRoute: FC = () => (
   <Card shadow={"sm"} p={"lg"} radius={"md"} withBorder>
@@ -9,7 +9,7 @@ export const MyselfProfileRoute: FC = () => (
 
     <Flex justify={"space-between"} align={"center"} mt={"md"} mb={"xs"}>
       <Text weight={500} color={"red"}>
-        Web Crafter chez Zenika
+        Artisan Web chez Zenika
       </Text>
       <Text weight={1000} color={"yellow"}>
         Organisateur des HumanTalk Grenoble
@@ -34,11 +34,14 @@ export const MyselfProfileRoute: FC = () => (
 
     <Text size={"sm"} color={"dimmed"}>
       Merci à RAISE PARTNER, client grenoblois dans lequel j'ai pu monté en
-      compétence sur TanStackQueries.
+      compétence sur TanStackQuery.
     </Text>
 
-    <Button variant={"light"} color={"blue"} fullWidth mt={"md"} radius={"md"}>
-      Réserver un créneau au stand Zenika pour échanger sur le web et le craft
-    </Button>
+    {/*
+     * SNOWCAMP ONLY
+     * <Button variant={"light"} color={"blue"} fullWidth mt={"md"} radius={"md"}>
+     *   Réserver un créneau au stand Zenika pour échanger sur le web et le craft
+     * </Button>
+     */}
   </Card>
 );

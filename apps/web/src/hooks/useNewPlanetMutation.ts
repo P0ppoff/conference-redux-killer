@@ -13,7 +13,7 @@ export const useNewPlanetMutation = () => {
 
   const { mutateAsync } = useMutation(
     (data: NewPlanetDto) =>
-      HttpClient.post(apiBuilder.newPlanet(), {
+      HttpClient.post<PlanetDto[]>(apiBuilder.newPlanet(), {
         body: JSON.stringify(data),
       }),
     {

@@ -4,7 +4,11 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { NewPlanetDto, PlanetDto } from "@redux-killer/dtos/planet.dto";
+import {
+  NewPlanetDto,
+  PlanetDto,
+  ToggleDeathStarDto,
+} from "@redux-killer/dtos/planet.dto";
 import { apiBuilder } from "../utils/apiBuilder";
 import { HttpClient } from "../httpClient";
 
@@ -13,6 +17,8 @@ export interface PlanetsState {
   list: undefined | PlanetDto[];
   planet: undefined | PlanetDto;
   isPlanetLoading: boolean;
+  isDeathStarActivated: boolean;
+  deathStarInterval: number;
 }
 
 const initialState: PlanetsState = {
@@ -20,10 +26,38 @@ const initialState: PlanetsState = {
   isLoading: false,
   planet: undefined,
   isPlanetLoading: false,
+  isDeathStarActivated: false,
+  deathStarInterval: 0,
 };
 
 export const fetchPlanets = createAsyncThunk("planets/fetchPlanets", () =>
   HttpClient.get(apiBuilder.allPlanets())
+);
+
+export const toggleDeathStar = createAsyncThunk(
+  "/death-star",
+  (
+    {
+      deathStarInterval,
+      isDeathStarActivated,
+    }: { deathStarInterval: number; isDeathStarActivated: boolean },
+    { dispatch }
+  ) =>
+    HttpClient.post<ToggleDeathStarDto>(apiBuilder.deathStar(), {
+      body: JSON.stringify({ enabled: isDeathStarActivated }),
+    }).then(
+      ({ enabled }): ToggleDeathStarDto & { deathStarInterval: number } => {
+        if (enabled) {
+          deathStarInterval = setInterval(
+            () => dispatch(fetchPlanets()),
+            3_000
+          );
+        } else {
+          clearInterval(deathStarInterval);
+        }
+        return { enabled, deathStarInterval };
+      }
+    )
 );
 
 export const createNewPlanet = createAsyncThunk(
@@ -47,7 +81,7 @@ export const createNewPlanet = createAsyncThunk(
       climate: data.climate.join(", "),
     };
     dispatch(addNewPlanet(futurePlanet));
-    return HttpClient.post(apiBuilder.newPlanet(), {
+    return HttpClient.post<PlanetDto[]>(apiBuilder.newPlanet(), {
       body: JSON.stringify(data),
     });
   }
@@ -85,6 +119,10 @@ const planetsSlice = createSlice({
     });
     builder.addCase(createNewPlanet.fulfilled, (state, action) => {
       state.list = action.payload;
+    });
+    builder.addCase(toggleDeathStar.fulfilled, (state, action) => {
+      state.isDeathStarActivated = action.payload.enabled;
+      state.deathStarInterval = action.payload.deathStarInterval;
     });
   },
 });

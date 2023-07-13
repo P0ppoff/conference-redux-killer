@@ -16,7 +16,14 @@ export const PlanetsPage: FC<{
     | typeof Paths.TAN_STACK_PLANET_ECOSYSTEM
     | typeof Paths.REDUX_PLANET_ECOSYSTEM;
   onSubmitNewPlanet: (data: NewPlanetDto) => void;
-}> = ({ planets, isLoading, planetPath, onSubmitNewPlanet }) => {
+  deathStarAffix: ReturnType<FC>;
+}> = ({
+  planets,
+  isLoading,
+  planetPath,
+  onSubmitNewPlanet,
+  deathStarAffix,
+}) => {
   const [filters, setFilters] = useState<PlanetsFilters | null>(null);
   const onSubmitFilters = (filtersFrom: PlanetsFilters | null) => {
     setFilters(filtersFrom);
@@ -59,6 +66,7 @@ export const PlanetsPage: FC<{
       </List>
 
       <ScrollToTop />
+      {deathStarAffix}
     </section>
   );
 };

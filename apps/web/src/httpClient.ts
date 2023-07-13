@@ -1,12 +1,12 @@
 export const HttpClient = {
   get: (options: RequestInfo) =>
     fetch(options).then((response) => response.json()),
-  post: (url: string, options: RequestInit) =>
+  post: <T = unknown>(url: string, options: RequestInit) =>
     fetch(url, {
       ...options,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((response) => response.json()),
+    }).then((response) => response.json() as T),
 };

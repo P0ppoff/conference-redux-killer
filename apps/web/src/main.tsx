@@ -10,7 +10,11 @@ import { ModalsProvider } from "@mantine/modals";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // TODO: Zenika recrute
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { refetchIntervalInBackground: false },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>

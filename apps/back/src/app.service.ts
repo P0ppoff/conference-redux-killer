@@ -13,6 +13,8 @@ export class AppService {
   private id = 100;
 
   private newPlanets: PlanetDto[] = [];
+  private deathStarInterval: NodeJS.Timer;
+  private currentDeathPlanetIndex = 0;
 
   getPlanetById(planetId: string): Promise<PlanetDto> {
     return this.getData<PlanetApi>(`/planets/${planetId}/`).then((planet) => ({
@@ -66,7 +68,19 @@ export class AppService {
       );
     }
 
-    return this.newPlanets.concat(planets);
+    return this.newPlanets.concat(planets).splice(this.currentDeathPlanetIndex);
+  }
+
+  async toggleDeathStar(enabled: boolean) {
+    if (enabled === false) {
+      clearInterval(this.deathStarInterval);
+    } else {
+      this.currentDeathPlanetIndex = 0;
+      this.deathStarInterval = setInterval(() => {
+        this.currentDeathPlanetIndex++;
+      }, 4_000);
+    }
+    return { enabled };
   }
 
   private extractPlanetId(url: string) {

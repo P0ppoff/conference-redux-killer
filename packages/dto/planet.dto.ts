@@ -34,3 +34,7 @@ export interface NewPlanetDto {
   rotationPeriod: number;
   films: string[];
 }
+
+export interface ToggleDeathStarDto {
+  enabled: boolean;
+}

@@ -7,14 +7,19 @@ import { keys } from "../utils/keys";
 import { apiBuilder } from "../utils/apiBuilder";
 import { useNewPlanetMutation } from "../hooks/useNewPlanetMutation";
 import { HttpClient } from "../httpClient";
+import { DeathStarButton } from "../components/DeathStarButton";
+import { useTanStackDeathStarMutation } from "../hooks/useTanStackDeathStarMutation";
 
 export const TanStackPlanetsRoute: FC = () => {
   const { data: planets, isLoading } = useQuery<PlanetDto[]>(
     keys.planets(),
-    () => HttpClient.get(apiBuilder.allPlanets())
+    () => HttpClient.get(apiBuilder.allPlanets()),
+    { refetchIntervalInBackground: true, refetchInterval: 3_000 }
   );
 
   const { onSubmitNewPlanet } = useNewPlanetMutation();
+
+  const { onClickDeathStar } = useTanStackDeathStarMutation();
 
   return (
     <PlanetsPage
@@ -22,6 +27,7 @@ export const TanStackPlanetsRoute: FC = () => {
       isLoading={isLoading}
       planetPath={Paths.TAN_STACK_PLANET_ECOSYSTEM}
       onSubmitNewPlanet={onSubmitNewPlanet}
+      deathStarAffix={<DeathStarButton onClick={onClickDeathStar} />}
     />
   );
 };

@@ -3,11 +3,16 @@ import {
   Controller,
   Get,
   HttpCode,
+  HttpStatus,
   Param,
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import { NewPlanetDto, PlanetDto } from '@redux-killer/dtos/planet.dto';
+import {
+  NewPlanetDto,
+  PlanetDto,
+  ToggleDeathStarDto,
+} from '@redux-killer/dtos/planet.dto';
 import { AppService } from './app.service';
 import { DelayInterceptor } from './delay.interceptor';
 
@@ -27,8 +32,16 @@ export class AppController {
   }
 
   @Post('/planets/new')
-  @HttpCode(201)
+  @HttpCode(HttpStatus.CREATED)
   async savePlanet(@Body() planet: NewPlanetDto): Promise<PlanetDto[]> {
     return this.appService.savePlanet(planet);
+  }
+
+  @Post('/death-star')
+  @HttpCode(HttpStatus.ACCEPTED)
+  async toggleDeathStar(
+    @Body() toggle: ToggleDeathStarDto,
+  ): Promise<ToggleDeathStarDto> {
+    return this.appService.toggleDeathStar(toggle.enabled);
   }
 }

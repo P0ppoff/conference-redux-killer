@@ -20,7 +20,7 @@ export const MyselfProfileRoute: FC = () => (
     </Flex>
 
     <Text size={"sm"} color={"dimmed"}>
-      Je suis développeur chez Zenika Grenoble depuis 5 ans. J'ai eu la chance
+      Je suis développeur chez Zenika Grenoble depuis 6 ans. J'ai eu la chance
       de parcourir une dizaine d’entreprises depuis mes débuts en tant que
       consultant, toutes ces expériences technologiques, organisationnelles et
       managériales m’ont formé pour aider mes clients à résoudre leur problème.
